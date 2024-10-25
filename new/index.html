@@ -1,110 +1,479 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-
         body {
-            background: linear-gradient(5deg, #f3f4f7, #e2e3e9);
-            font-family: 'Poppins', sans-serif;
-
+            background-color: #f8f9fa;
         }
-
         .navbar {
-            height: 100px;
-            background: linear-gradient(90deg, #1b6ca8, #60a3d9);
+            background-color: #343a40;
         }
-
-        .navbar-brand img {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .card {
+            border-radius: 0.5rem;
         }
-
-        #dashboard {
-            width: 100%;
-            height: 600px;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-        }
-
-        @media (max-width: 576px) {
-            #dashboard {
-                height: 300px;
-            }
-        }
-        @media (min-width: 576px) and (max-width: 768px) {
-            #dashboard {
-                height: 400px;
-            }
-        }
-        @media (min-width: 768px) and (max-width: 992px) {
-            #dashboard {
-                height: 500px;
-            }
-        }
-        @media (min-width: 992px) {
-            #dashboard {
-                height: 600px;
-            }
-        }
-
-        .navbar-nav .nav-link {
-            font-weight: 800;
+        .card-header {
+            background-color: #007bff;
             color: white;
-            transition: color 0.3s, transform 0.3s;
+            font-weight: bold;
         }
-
-        .navbar-nav .nav-link:hover {
-            color: #ffd700;
-            transform: translateY(-3px);
+        .table thead th {
+            background-color: #007bff;
+            color: white;
         }
-
-
-        .container-fluid {
-            padding: 10px 20px;
+        .table tbody tr:hover {
+            background-color: #e9ecef;
         }
-
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+        .btn-sm {
+            padding: 0.2rem 0.5rem;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        h2, h3 {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-
-<nav class="navbar navbar-dark navbar-expand-sm">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="img/images.png" alt="Logo" width="100" height="70">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse bg-opacity-50 p-2" id="navbarScroll">
-            <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="home-page.html" class="nav-link" target="dashboardFrame">Home</a>
+                    <span id="dashboard-nav" class="nav-link">Dashboard</span>
                 </li>
                 <li class="nav-item">
-                    <a href="customer-form.html" class="nav-link" target="dashboardFrame">Manage Customer</a>
+                    <span id="customer-nav" class="nav-link">Customer Management</span>
                 </li>
                 <li class="nav-item">
-                    <a href="store-form.html" class="nav-link" target="dashboardFrame">Manage Store</a>
+                    <span id="item-nav" class="nav-link">Item Management</span>
                 </li>
                 <li class="nav-item">
-                    <a href="order-form.html" class="nav-link" target="dashboardFrame">Place Order</a>
+                    <span id="order-nav" class="nav-link">Place Order</span>
+                </li>
+                <li class="nav-item">
+                    <span id="order-history-nav" class="nav-link">Order History</span>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid">
-    <iframe id="dashboard" name="dashboardFrame" frameborder="0"></iframe>
+<!-- Dashboard Cards -->
+<div id="dashboard-section" class="container mt-4">
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Customer -->
+<div id="customer-section" class="container mt-5">
+    <!-- Customer Form -->
+    <div class="card my-4">
+        <div class="card-header">Enter Customer Details</div>
+        <div class="card-body">
+            <form id="customerForm">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="col">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="mobile" class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" required>
+                    </div>
+                    <div class="col">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" rows="3" placeholder="Enter Address" required></textarea>
+                </div>
+                <button id="customer_save_button" type="button" class="btn btn-primary w-100" onclick="addCustomer()">Save Customer</button>
+                <button id="customer_update_button" type="button" class="btn btn-warning w-100 mt-2" onclick="updateCustomer()">Update Customer</button>
+            </form>
+        </div>
+    </div>
 
+    <!-- Customer Table -->
+    <h3>Customer List</h3>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Mobile Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="customerTableBody">
+        <!-- Customer rows will be added here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Item -->
+<div id="item-section" class="container mt-5">
+    <!-- Item Form -->
+    <div class="card my-4">
+        <div class="card-header">Enter Item Details</div>
+        <div class="card-body">
+            <form id="itemForm">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="itemName" class="form-label">Item Name</label>
+                        <input type="text" class="form-control" id="itemName" placeholder="Item Name" required>
+                    </div>
+                    <div class="col">
+                        <label for="qty" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="qty" placeholder="Quantity" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="itemDescription" class="form-label">Item Description</label>
+                    <textarea class="form-control" id="itemDescription" rows="3" placeholder="Enter Item Description" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" placeholder="Enter Price" required>
+                </div>
+                <button id="item_save_button" type="button" class="btn btn-primary w-100" onclick="addItem()">Save Item</button>
+                <button id="item_update_button" type="button" class="btn btn-warning w-100 mt-2" onclick="updateItem()">Update Item</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Item Table -->
+    <h3>Item List</h3>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="itemTableBody">
+        <!-- Item rows will be added here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Order Section -->
+<div id="order-section" class="container mt-5">
+    <h3>Select Customer and Item to Place Order</h3>
+    <div class="mb-3">
+        <label for="customerSelect" class="form-label">Select Customer</label>
+        <select id="customerSelect" class="form-select" required>
+            <option value="" disabled selected>Select a Customer</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="itemSelect" class="form-label">Select Item</label>
+        <select id="itemSelect" class="form-select" required>
+            <option value="" disabled selected>Select an Item</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="orderQty" class="form-label">Quantity</label>
+        <input type="number" class="form-control" id="orderQty" placeholder="Quantity" required>
+    </div>
+    <button type="button" class="btn btn-primary w-100" onclick="placeOrder()">Place Order</button>
+</div>
+
+<!--order history-->
+<div id="order-history-section" class="container mt-4">
+    <h2 class="mb-4">Order History</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Items</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>#001</td>
+                <td>2024-10-01</td>
+                <td>Item A, Item B</td>
+                <td>$45.00</td>
+                <td><span class="badge bg-success">Completed</span></td>
+            </tr>
+            <tr>
+                <td>#002</td>
+                <td>2024-09-15</td>
+                <td>Item C</td>
+                <td>$30.00</td>
+                <td><span class="badge bg-warning">Pending</span></td>
+            </tr>
+            <tr>
+                <td>#003</td>
+                <td>2024-08-20</td>
+                <td>Item D, Item E, Item F</td>
+                <td>$90.00</td>
+                <td><span class="badge bg-danger">Cancelled</span></td>
+            </tr>
+            <tr>
+                <td>#004</td>
+                <td>2024-07-10</td>
+                <td>Item G</td>
+                <td>$15.00</td>
+                <td><span class="badge bg-success">Completed</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    // Customer and Item Data Arrays
+    let customers = [];
+    let items = [];
+
+    // Add Customer Function
+    function addCustomer() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const mobile = document.getElementById('mobile').value;
+        const email = document.getElementById('email').value;
+        const address = document.getElementById('address').value;
+
+        const customer = { firstName, lastName, mobile, email, address };
+        customers.push(customer);
+        updateCustomerTable();
+        clearCustomerForm();
+    }
+
+    // Update Customer Function
+    function updateCustomer() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const mobile = document.getElementById('mobile').value;
+        const email = document.getElementById('email').value;
+        const address = document.getElementById('address').value;
+
+        const customerIndex = customers.findIndex(c => c.firstName === firstName && c.lastName === lastName);
+        if (customerIndex !== -1) {
+            customers[customerIndex] = { firstName, lastName, mobile, email, address };
+            updateCustomerTable();
+            clearCustomerForm();
+        }
+    }
+
+    // Update Customer Table
+    function updateCustomerTable() {
+        const customerTableBody = document.getElementById('customerTableBody');
+        customerTableBody.innerHTML = '';
+        customers.forEach((customer, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+        <td>${customer.firstName}</td>
+        <td>${customer.lastName}</td>
+        <td>${customer.mobile}</td>
+        <td>${customer.email}</td>
+        <td>${customer.address}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" onclick="editCustomer(${index})">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteCustomer(${index})">Delete</button>
+        </td>
+      `;
+            customerTableBody.appendChild(row);
+        });
+    }
+
+    // Clear Customer Form
+    function clearCustomerForm() {
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('mobile').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('address').value = '';
+    }
+
+    // Edit Customer Function
+    function editCustomer(index) {
+        const customer = customers[index];
+        document.getElementById('firstName').value = customer.firstName;
+        document.getElementById('lastName').value = customer.lastName;
+        document.getElementById('mobile').value = customer.mobile;
+        document.getElementById('email').value = customer.email;
+        document.getElementById('address').value = customer.address;
+        customers.splice(index, 1); // Remove customer for now
+        updateCustomerTable();
+    }
+
+    // Delete Customer Function
+    function deleteCustomer(index) {
+        customers.splice(index, 1);
+        updateCustomerTable();
+    }
+
+    // Add Item Function
+    function addItem() {
+        const itemName = document.getElementById('itemName').value;
+        const qty = document.getElementById('qty').value;
+        const description = document.getElementById('itemDescription').value;
+        const price = document.getElementById('price').value;
+
+        const item = { itemName, qty, description, price };
+        items.push(item);
+        updateItemTable();
+        clearItemForm();
+    }
+
+    // Update Item Function
+    function updateItem() {
+        const itemName = document.getElementById('itemName').value;
+        const qty = document.getElementById('qty').value;
+        const description = document.getElementById('itemDescription').value;
+        const price = document.getElementById('price').value;
+
+        const itemIndex = items.findIndex(i => i.itemName === itemName);
+        if (itemIndex !== -1) {
+            items[itemIndex] = { itemName, qty, description, price };
+            updateItemTable();
+            clearItemForm();
+        }
+    }
+
+    // Update Item Table
+    function updateItemTable() {
+        const itemTableBody = document.getElementById('itemTableBody');
+        itemTableBody.innerHTML = '';
+        items.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+        <td>${item.itemName}</td>
+        <td>${item.description}</td>
+        <td>${item.qty}</td>
+        <td>$${item.price}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" onclick="editItem(${index})">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteItem(${index})">Delete</button>
+        </td>
+      `;
+            itemTableBody.appendChild(row);
+        });
+    }
+
+    // Clear Item Form
+    function clearItemForm() {
+        document.getElementById('itemName').value = '';
+        document.getElementById('qty').value = '';
+        document.getElementById('itemDescription').value = '';
+        document.getElementById('price').value = '';
+    }
+
+    // Edit Item Function
+    function editItem(index) {
+        const item = items[index];
+        document.getElementById('itemName').value = item.itemName;
+        document.getElementById('qty').value = item.qty;
+        document.getElementById('itemDescription').value = item.description;
+        document.getElementById('price').value = item.price;
+        items.splice(index, 1); // Remove item for now
+        updateItemTable();
+    }
+
+    // Delete Item Function
+    function deleteItem(index) {
+        items.splice(index, 1);
+        updateItemTable();
+    }
+
+    // Place Order Function
+    function placeOrder() {
+        const customerSelect = document.getElementById('customerSelect');
+        const itemSelect = document.getElementById('itemSelect');
+        const orderQty = document.getElementById('orderQty');
+
+        const orderDetails = {
+            customer: customerSelect.value,
+            item: itemSelect.value,
+            quantity: orderQty.value
+        };
+        console.log('Order Placed:', orderDetails);
+        // Add further logic for order placement
+    }
+
+    // Show/Hide Sections
+    document.getElementById('customer-nav').onclick = function() {
+        document.getElementById('customer-section').style.display = 'block';
+        document.getElementById('item-section').style.display = 'none';
+        document.getElementById('order-section').style.display = 'none';
+        document.getElementById('order-history-nav').style.display = 'none';
+    };
+
+    document.getElementById('item-nav').onclick = function() {
+        document.getElementById('customer-section').style.display = 'none';
+        document.getElementById('item-section').style.display = 'block';
+        document.getElementById('order-section').style.display = 'none';
+        document.getElementById('order-history-section').style.display = 'none';
+    };
+
+    document.getElementById('order-nav').onclick = function() {
+        document.getElementById('customer-section').style.display = 'none';
+        document.getElementById('item-section').style.display = 'none';
+        document.getElementById('order-section').style.display = 'block';
+        document.getElementById('order-history-section').style.display = 'none';
+    };
+
+    document.getElementById('order-history-nav').onclick = function (){
+        document.getElementById('order-history-section').style.display = 'block';
+        document.getElementById('customer-section').style.display = 'none';
+        document.getElementById('item-section').style.display = 'none';
+        document.getElementById('order-section').style.display = 'none';
+    }
+
+    // Initialize sections on page load
+    document.getElementById('customer-section').style.display = 'none';
+    document.getElementById('item-section').style.display = 'none';
+    document.getElementById('order-section').style.display = 'none';
+    document.getElementById('order-history-section').style.display = 'none';
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
