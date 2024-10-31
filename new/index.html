@@ -429,9 +429,6 @@
     </div>
 </div>
 
-
-<!-- Order Section -->
-
     <!-- Place Order Form -->
     <div id="order-section" class="card">
         <div class="card-header">Place Order</div>
@@ -465,12 +462,12 @@
 
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="text" class="form-control" id="price" readonly>
+                    <input type="text" class="form-control" id="price" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="totalPrice" class="form-label">Total Price</label>
-                    <input type="text" id="totalPrice" class="form-control" readonly>
+                    <input type="text" id="totalPrice" class="form-control" required>
                 </div>
 
                 <button id="place_order_button" type="button" class="btn btn-primary w-100">Place Order</button>
@@ -489,10 +486,16 @@
                 </tr>
                 </thead>
                 <tbody id="orderTableBody"></tbody>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+
             </table>
         </div>
     </div>
-</div>
+
 
 <!-- Footer -->
 <footer>
