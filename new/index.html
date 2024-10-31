@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery POS System</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -89,7 +91,7 @@
 
         footer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 8px;
             padding: 15px; /* More padding for footer */
             background-color: black; /* Orange footer background */
             color: #FFFFFF; /* White footer text */
@@ -114,40 +116,206 @@
             font-size: 25px;
             color: maroon;
         }
+
+        #dashboard-section {
+            font-family: 'Arial', sans-serif;
+            background-color: honeydew;
+            padding: 10px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9));
+            padding: 10px 10px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: maroon;
+            font-weight: bolder;
+            font-family: "Britannic Bold";
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-top: 5px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .btn {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .featured-collection {
+            margin-top: 10px;
+        }
+
+
+        /* Main Collection Container */
+        .collection {
+            display: flex;
+            gap: 35px; /* Space between images */
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /* Individual Item Styling */
+        .item {
+            width: 350px;
+            height: 390px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+         .featured-collection h2{
+             margin-bottom: 15px;
+            color: maroon;
+             font-weight: bolder;
+             font-family: "Baskerville Old Face";
+
+        }
+
+        /* Hover Effect */
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Adding a Light Overlay */
+        .item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .item:hover::before {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Adding a Text Label on Hover */
+        .item::after {
+            content: 'View';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .item:hover::after {
+            opacity: 1;
+        }
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#" id="name">Piyara fashion</a>
+        <a class="navbar-brand" href="#" id="name">Piyara Fashion</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showSection('customer-section')">Customers</a>
+                    <span id="dashboard-nav" class="nav-link">Home</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showSection('item-section')">Items</a>
+                    <span id="customer-nav" class="nav-link">Customer Management</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showSection('order-section')">Place Order</a>
+                    <span id="item-nav" class="nav-link">Item Management</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="showSection('order-history-section')">Order History</a>
+                    <span id="order-nav" class="nav-link">Place Order</span>
+                </li>
+                <li class="nav-item">
+                    <span id="order-history-nav" class="nav-link">Order History</span>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<div id="dashboard-section">
+    <div class="hero">
+        <h1>Welcome to Piyara Fashion</h1>
+        <p>Discover the latest trends in clothing.</p>
+        <hr>
+    </div>
+
+    <div class="featured-collection">
+        <h2>Featured Collection</h2>
+        <div class="collection">
+            <div class="item" style="background-image: url('img/Untitled.jpg');"></div>
+            <div class="item" style="background-image: url('img/Untitled1.jpg');"></div>
+            <div class="item" style="background-image: url('img/Untitled2.jpg');"></div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Customer Section -->
 <div id="customer-section" class="container section active">
     <div class="card">
         <div class="card-header">Customer Management</div>
         <div class="card-body">
-            <form id="customerForm" onsubmit="addCustomer(); return false;">
+            <form id="customerForm">
+                <div class="mb-3">
+                    <label for="customerId" class="form-label">Customer ID</label>
+                    <input type="text" id="customerId" name="id" class="form-control" placeholder="Auto-generated" readonly>
+                </div>
+
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="firstName" required>
@@ -168,21 +336,32 @@
                     <label for="customerAddress" class="form-label">Address</label>
                     <input type="text" class="form-control" id="customerAddress" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Add Customer</button>
+                <button id="customer_add_button" type="button" class="btn btn-primary w-100">Add Customer</button>
+               <hr>
+                <div style="display: flex; margin-top: 10px; gap: 20px">
+                <button id="customer_update_button" type="button" class="btn btn-primary w-50">update Customer</button>
+                <button id="customer_delete_button" type="button" class="btn btn-primary w-50">delete Customer</button>
+                </div>
+                <hr>
             </form>
             <h5>Customer List</h5>
             <table class="table table-bordered mt-3">
                 <thead>
-                <tr>
+                <tr id="table-row">
+                    <th>Customer ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody id="customerTableBody"></tbody>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
             </table>
         </div>
     </div>
@@ -193,14 +372,22 @@
     <div class="card">
         <div class="card-header">Item Management</div>
         <div class="card-body">
-            <form id="itemForm" onsubmit="addItem(); return false;">
+            <form id="itemForm">
+
+                <div class="mb-3">
+                    <label for="itemCategory" class="form-label">Category</label>
+                    <select class="form-control" id="itemCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Food">Food</option>
+                        <option value="Books">Books</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="itemName" class="form-label">Item Name</label>
                     <input type="text" class="form-control" id="itemName" required>
-                </div>
-                <div class="mb-3">
-                    <label for="itemDescription" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="itemDescription" required>
                 </div>
                 <div class="mb-3">
                     <label for="itemPrice" class="form-label">Price</label>
@@ -210,69 +397,98 @@
                     <label for="itemQuantity" class="form-label">Quantity</label>
                     <input type="number" class="form-control" id="itemQuantity" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Add Item</button>
+                <button id="item_add_button" type="button" class="btn btn-primary w-100">Add Item</button>
+                <hr>
+                <div style="display: flex; margin-top: 10px; gap: 20px">
+                    <button id="item_update_button" type="button" class="btn btn-primary w-50">Update Item</button>
+                    <button id="item_delete_button" type="button" class="btn btn-primary w-50">Delete Item</button>
+                </div>
             </form>
             <h5>Item List</h5>
             <table class="table table-bordered mt-3">
                 <thead>
                 <tr>
+                    <th>Category</th>
                     <th>Item Name</th>
-                    <th>Description</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody id="itemTableBody"></tbody>
+                <tbody id="itemTableBody">
+                <!-- Dynamic rows will be injected here -->
+
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+
+                </tbody>
             </table>
         </div>
     </div>
 </div>
 
+
 <!-- Order Section -->
-<div id="order-section" class="container section">
-    <div class="card">
+
+    <!-- Place Order Form -->
+    <div id="order-section" class="card">
         <div class="card-header">Place Order</div>
         <div class="card-body">
             <form id="orderForm">
                 <div class="mb-3">
-                    <label for="orderCustomer" class="form-label">Select Customer</label>
-                    <select class="form-select" id="orderCustomer" required>
-                        <option selected disabled value="">Choose...</option>
-                    </select>
+                    <label for="orderId" class="form-label">Order ID</label>
+                    <input type="text" id="orderId" name="orderId" class="form-control" placeholder="Auto-generated" readonly>
                 </div>
-                <div class="mb-3">
-                    <label for="orderItem" class="form-label">Select Item</label>
-                    <select class="form-select" id="orderItem" required>
-                        <option selected disabled value="">Choose...</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="orderQuantity" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="orderQuantity" placeholder="Quantity" required>
-                </div>
-                <button type="button" class="btn btn-primary w-100" onclick="placeOrder()">Place Order</button>
-            </form>
-        </div>
-    </div>
-</div>
 
-<!-- Order History Section -->
-<div id="order-history-section" class="container section">
-    <div class="card">
-        <div class="card-header">Order History</div>
-        <div class="card-body">
-            <table class="table table-bordered">
+                <div class="mb-3">
+                    <label for="customerId" class="form-label">Customer</label>
+                    <select id="customerIds" class="form-control" required>
+                        <option value="">Select Customer</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="itemId" class="form-label">Item</label>
+                    <select id="itemId" class="form-control" required>
+                        <option value="">Select Item</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" id="price" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="totalPrice" class="form-label">Total Price</label>
+                    <input type="text" id="totalPrice" class="form-control" readonly>
+                </div>
+
+                <button id="place_order_button" type="button" class="btn btn-primary w-100">Place Order</button>
+                <hr>
+            </form>
+            <h5>Order Details</h5>
+            <table class="table table-bordered mt-3">
                 <thead>
                 <tr>
                     <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>Item</th>
+                    <th>Customer ID</th>
+                    <th>Item ID</th>
                     <th>Quantity</th>
-                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Total</th>
                 </tr>
                 </thead>
-                <tbody id="orderHistoryTableBody"></tbody>
+                <tbody id="orderTableBody"></tbody>
             </table>
         </div>
     </div>
@@ -280,207 +496,130 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2024 Your Company. All rights reserved.</p>
+    <p>&copy; 2024 Piyara Fashion. All rights reserved.</p>
 </footer>
 
 <script>
-    // Data structures to store customers, items, and orders
-    let customers = [];
-    let items = [];
-    let orders = [];
-    let orderIdCounter = 1;
+    let dashboard_nav = document.getElementById("dashboard-nav");
+    let customer_nav = document.getElementById("customer-nav");
+    let item_nav = document.getElementById("item-nav");
+    let order_nav = document.getElementById("order-nav");
 
-    // Function to show the selected section
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(sectionId).classList.add('active');
-        if (sectionId === 'order-section') {
-            populateOrderForm();
-        }
+
+    let dashboard_section = document.getElementById("dashboard-section");
+    let customer_section = document.getElementById("customer-section");
+    let item_section = document.getElementById("item-section");
+    let order_section = document.getElementById("order-section");
+
+
+    // Set initial visibility for all sections (optional)
+     dashboard_section.style.display = "block"; // Initially shown
+     customer_section.style.display = "none";
+    item_section.style.display = "none";
+    order_section.style.display = "none";
+
+
+    dashboard_nav.addEventListener('click', function () {
+        dashboard_section.style.display = "block";
+        customer_section.style.display = "none";
+        item_section.style.display = "none";
+        order_section.style.display = "none";
+
+    });
+
+    customer_nav.addEventListener('click', function () {
+        dashboard_section.style.display = "none";
+        customer_section.style.display = "block";
+        item_section.style.display = "none";
+        order_section.style.display = "none";
+
+    });
+
+    item_nav.addEventListener('click', function () {
+        dashboard_section.style.display = "none";
+        customer_section.style.display = "none";
+        item_section.style.display = "block";
+        order_section.style.display = "none";
+
+    });
+
+    order_nav.addEventListener('click', function () {
+        dashboard_section.style.display = "none";
+        customer_section.style.display = "none";
+        item_section.style.display = "none";
+        order_section.style.display = "block";
+
+    });
+
+        // Calculate total price when quantity or price changes
+        const calculateTotalPrice = () => {
+        const price = parseFloat(document.getElementById('price').value) || 0;
+        const quantity = parseInt(document.getElementById('quantity').value) || 0;
+        const totalPrice = price * quantity;
+        document.getElementById('totalPrice').value = totalPrice.toFixed(2);
+    };
+
+        // Event listeners for calculating total price
+        document.getElementById('price').addEventListener('input', calculateTotalPrice);
+        document.getElementById('quantity').addEventListener('input', calculateTotalPrice);
+
+        // Order placing functionality
+        document.getElementById('place_order_button').addEventListener('click', () => {
+        // Capture form values
+        const orderId = document.getElementById('orderId').value; // Auto-generated or input value
+        const customerId = document.getElementById('customerId').value;
+        const itemId = document.getElementById('itemId').value;
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const price = parseFloat(document.getElementById('price').value);
+        const totalPrice = parseFloat(document.getElementById('totalPrice').value);
+
+        // Validate required fields
+        if (!customerId || !itemId || quantity <= 0 || price <= 0) {
+        alert("Please fill in all required fields correctly.");
+        return;
     }
 
-    // Function to add a customer
-    function addCustomer() {
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('customerEmail').value;
-        const phone = document.getElementById('customerPhone').value;
-        const address = document.getElementById('customerAddress').value;
-
-        const customer = { firstName, lastName, email, phone, address };
-        customers.push(customer);
-        displayCustomers();
-        clearCustomerForm();
-    }
-
-    // Function to display customers in the table
-    function displayCustomers() {
-        const tbody = document.getElementById('customerTableBody');
-        tbody.innerHTML = '';
-        customers.forEach((customer, index) => {
-            const row = `
-                <tr>
-                    <td>${customer.firstName}</td>
-                    <td>${customer.lastName}</td>
-                    <td>${customer.email}</td>
-                    <td>${customer.phone}</td>
-                    <td>${customer.address}</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" onclick="editCustomer(${index})">Edit</button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteCustomer(${index})">Delete</button>
-                    </td>
-                </tr>
-            `;
-            tbody.innerHTML += row;
-        });
-    }
-
-    // Function to clear the customer form
-    function clearCustomerForm() {
-        document.getElementById('customerForm').reset();
-    }
-
-    // Function to edit a customer
-    function editCustomer(index) {
-        const customer = customers[index];
-        document.getElementById('firstName').value = customer.firstName;
-        document.getElementById('lastName').value = customer.lastName;
-        document.getElementById('customerEmail').value = customer.email;
-        document.getElementById('customerPhone').value = customer.phone;
-        document.getElementById('customerAddress').value = customer.address;
-        customers.splice(index, 1); // Remove the customer being edited
-        displayCustomers();
-    }
-
-    // Function to delete a customer
-    function deleteCustomer(index) {
-        customers.splice(index, 1);
-        displayCustomers();
-    }
-
-    // Function to add an item
-    function addItem() {
-        const name = document.getElementById('itemName').value;
-        const description = document.getElementById('itemDescription').value;
-        const price = document.getElementById('itemPrice').value;
-        const quantity = document.getElementById('itemQuantity').value;
-
-        const item = { name, description, price, quantity };
-        items.push(item);
-        displayItems();
-        clearItemForm();
-    }
-
-    // Function to display items in the table
-    function displayItems() {
-        const tbody = document.getElementById('itemTableBody');
-        tbody.innerHTML = '';
-        items.forEach((item, index) => {
-            const row = `
-                <tr>
-                    <td>${item.name}</td>
-                    <td>${item.description}</td>
-                    <td>${item.price}</td>
-                    <td>${item.quantity}</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" onclick="editItem(${index})">Edit</button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteItem(${index})">Delete</button>
-                    </td>
-                </tr>
-            `;
-            tbody.innerHTML += row;
-        });
-    }
-
-    // Function to clear the item form
-    function clearItemForm() {
-        document.getElementById('itemForm').reset();
-    }
-
-    // Function to edit an item
-    function editItem(index) {
-        const item = items[index];
-        document.getElementById('itemName').value = item.name;
-        document.getElementById('itemDescription').value = item.description;
-        document.getElementById('itemPrice').value = item.price;
-        document.getElementById('itemQuantity').value = item.quantity;
-        items.splice(index, 1); // Remove the item being edited
-        displayItems();
-    }
-
-    // Function to delete an item
-    function deleteItem(index) {
-        items.splice(index, 1);
-        displayItems();
-    }
-
-    // Function to populate the order form
-    function populateOrderForm() {
-        const customerSelect = document.getElementById('orderCustomer');
-        const itemSelect = document.getElementById('orderItem');
-
-        // Clear previous options
-        customerSelect.innerHTML = '<option selected disabled value="">Choose...</option>';
-        itemSelect.innerHTML = '<option selected disabled value="">Choose...</option>';
-
-        customers.forEach((customer, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = `${customer.firstName} ${customer.lastName}`;
-            customerSelect.appendChild(option);
-        });
-
-        items.forEach((item, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = item.name;
-            itemSelect.appendChild(option);
-        });
-    }
-
-    // Function to place an order
-    function placeOrder() {
-        const customerIndex = document.getElementById('orderCustomer').value;
-        const itemIndex = document.getElementById('orderItem').value;
-        const quantity = document.getElementById('orderQuantity').value;
-
-        if (customerIndex === '' || itemIndex === '' || quantity === '') {
-            alert('Please fill in all fields.');
-            return;
-        }
-
+        // Create an order object
         const order = {
-            id: orderIdCounter++,
-            customer: customers[customerIndex],
-            item: items[itemIndex],
-            quantity: quantity,
-            date: new Date().toLocaleDateString()
-        };
-        orders.push(order);
-        displayOrderHistory();
-        alert('Order placed successfully!');
-        document.getElementById('orderForm').reset();
-    }
+        orderId: orderId || generateOrderId(), // Generate if not provided
+        customerId,
+        itemId,
+        quantity,
+        price,
+        totalPrice
+    };
 
-    // Function to display order history
-    function displayOrderHistory() {
-        const tbody = document.getElementById('orderHistoryTableBody');
-        tbody.innerHTML = '';
-        orders.forEach(order => {
-            const row = `
-                <tr>
-                    <td>${order.id}</td>
-                    <td>${order.customer.firstName} ${order.customer.lastName}</td>
-                    <td>${order.item.name}</td>
-                    <td>${order.quantity}</td>
-                    <td>${order.date}</td>
-                </tr>
-            `;
-            tbody.innerHTML += row;
-        });
-    }
+        // Append the new order to the order table
+        const orderTableBody = document.getElementById('orderTableBody');
+        const newRow = `<tr>
+                            <td>${order.orderId}</td>
+                            <td>${order.customerId}</td>
+                            <td>${order.itemId}</td>
+                            <td>${order.quantity}</td>
+                            <td>${order.price.toFixed(2)}</td>
+                            <td>${order.totalPrice.toFixed(2)}</td>
+                        </tr>`;
+        orderTableBody.insertAdjacentHTML('beforeend', newRow);
+
+        // Clear form fields after placing the order
+        document.getElementById('orderForm').reset();
+        calculateTotalPrice(); // Reset total price display
+    });
+
+        // Function to generate a random Order ID (if needed)
+        const generateOrderId = () => {
+        return `ORD-${Math.floor(Math.random() * 10000)}`;
+    };
 </script>
+
+<!--jquery-->
+<script src="lib/jquery-3.7.1.min(1).js"></script>
+
+<script type="module" src="controller/customerController.js"></script>
+<script type="module" src="controller/orderController.js"></script>
+
+<script type="module" src="controller/itemController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
