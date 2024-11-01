@@ -105,3 +105,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// Function to set the current date and time in the orderDate input
+function setDefaultDateTime() {
+    const orderDateInput = document.getElementById("orderDate");
+    const now = new Date();
+    const formattedDate = now.toISOString().slice(0, 16); // Format to YYYY-MM-DDTHH:MM
+    orderDateInput.value = formattedDate;
+}
+
+// Call the function to set default date and time when page loads
+document.addEventListener("DOMContentLoaded", () => {
+    setDefaultDateTime();
+});

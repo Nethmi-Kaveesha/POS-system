@@ -4,99 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Piyara Fashion - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-
         body {
-            background: linear-gradient(to right, #87CEFA, #003366);
+            background-color: #000000; /* Black background */
             font-family: 'Poppins', sans-serif;
+            color: #ffffff; /* White text */
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
         }
-
 
         .container {
             display: flex;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
+            position: relative; /* For absolute positioning of images */
         }
 
-
         .login-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(128, 0, 0, 0.9); /* Maroon background with transparency */
             border-radius: 15px;
             padding: 30px;
             max-width: 400px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            margin: auto; /* Center vertically */
+            z-index: 2; /* Ensure login box is above images */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
         }
 
-
         .card {
-            background-color: white;
+            background-color: #1c1c1c; /* Dark grey for card */
             border: none;
             border-radius: 15px;
         }
 
-
         .form-control {
-            background-color: #eaf4fc;
-            border: none;
+            background-color: #2a2a2a; /* Darker grey for inputs */
+            color: #ffffff; /* White text for inputs */
+            border: 1px solid #b22222; /* Maroon border */
             padding: 15px;
             transition: all 0.3s ease;
         }
 
         .form-control:focus {
-            border: 2px solid #003366;
+            border: 2px solid #b22222; /* Maroon focus border */
             box-shadow: none;
         }
 
         .btn-primary {
-            background-color: #003366;
+            background-color: #b22222; /* Maroon button */
             border: none;
             transition: background-color 0.3s;
         }
 
         .btn-primary:hover {
-            background-color: #002244;
+            background-color: #900000; /* Darker maroon on hover */
         }
 
         a {
             text-decoration: none;
-            color: #003366;
+            color: #ffffff; /* White links */
         }
 
         a:hover {
             text-decoration: underline;
+            color: #b22222; /* Maroon on hover */
         }
 
-
         .modal-content {
-            background-color: #f0f8ff;
+            background-color: #333333; /* Dark grey for modal */
             border-radius: 15px;
+            color: #ffffff; /* White text */
         }
 
         .modal-header {
             border-bottom: none;
         }
 
-
         .logo {
-            width: 80px;
+            width: 100px; /* Logo size */
             margin-bottom: 20px;
         }
 
-
         h2 {
             font-weight: bold;
-            color: #003366;
+            color: #b22222; /* Maroon for headings */
         }
 
+        .image-container {
+            position: relative; /* For absolute positioning of images */
+            flex: 1; /* Allow the image container to take available space */
+            overflow: hidden; /* Hide overflow for images */
+        }
 
         .large-image {
-            max-width: 800px;
-            height: 610px;
-            margin-left: 20px;
-            border-radius: 15px;
+            position: absolute; /* Position for animation */
+            top: 50%;
+            left: 50%;
+            width: 100%; /* Adjust width to full for better fit */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Cover the container */
+            transform: translate(-50%, -50%); /* Center image */
+            border-radius: 15px; /* Rounded corners */
+            opacity: 0;
+            animation: fade 12s infinite; /* Change duration as needed */
+        }
+
+        /* Animation for images */
+        @keyframes fade {
+            0%, 20% { opacity: 1; } /* Show the image */
+            25%, 100% { opacity: 0; } /* Hide the image */
+        }
+
+        /* Show each image at different times */
+        #image1 {
+            animation-delay: 0s; /* First image */
+        }
+
+        #image2 {
+            animation-delay: 4s; /* Second image */
+        }
+
+        #image3 {
+            animation-delay: 8s; /* Third image */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px 0;
+            color: #ffffff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -106,9 +147,8 @@
     <div class="login-container">
         <div class="card p-4 shadow-lg">
             <div class="card-body text-center">
-                <img src="img/images.png" alt="Shop Logo" class="logo">
-                <h2 class="mb-4">Grocery Shop Login</h2>
-
+                <img src="img/images.png" alt="Piyara Fashion Logo" class="logo">
+                <h2 class="mb-4">Piyara Fashion Login</h2>
 
                 <form action="index.html" method="POST">
                     <div class="form-group mb-3">
@@ -128,7 +168,11 @@
         </div>
     </div>
 
-    <img src="img/14015998_web1_family.shopping-2.webp" alt="Large Image" class="large-image"> <!-- Replace with your large image source -->
+    <div class="image-container">
+        <img src="img/shutterstock_1855048690.jpg" alt="Large Image" class="large-image" id="image1">
+        <img src="img/hq720.jpg" alt="Large Image" class="large-image" id="image2">
+        <img src="img/different-female-poses.webp" alt="Large Image" class="large-image" id="image3">
+    </div>
 </div>
 
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
@@ -154,6 +198,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="footer">
+    &copy; 2024 Piyara Fashion. All rights reserved.
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -280,9 +280,6 @@
                 <li class="nav-item">
                     <span id="order-nav" class="nav-link">Place Order</span>
                 </li>
-                <li class="nav-item">
-                    <span id="order-history-nav" class="nav-link">Order History</span>
-                </li>
             </ul>
         </div>
     </div>
@@ -430,71 +427,78 @@
 </div>
 
     <!-- Place Order Form -->
-    <div id="order-section" class="card">
-        <div class="card-header">Place Order</div>
-        <div class="card-body">
-            <form id="orderForm">
-                <div class="mb-3">
-                    <label for="orderId" class="form-label">Order ID</label>
-                    <input type="text" id="orderId" name="orderId" class="form-control" placeholder="Auto-generated" readonly>
-                </div>
+<div id="order-section" class="card">
+    <div class="card-header">Place Order</div>
+    <div class="card-body">
+        <form id="orderForm">
 
-                <div class="mb-3">
-                    <label for="customerId" class="form-label">Customer</label>
-                    <select id="customerIds" class="form-control" required>
-                        <option value="">Select Customer</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
-                </div>
+            <div class="mb-3">
+                <label for="orderDate" class="form-label">Order Date</label>
+                <input type="datetime-local" id="orderDate" name="orderDate" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="orderId" class="form-label">Order ID</label>
+                <input type="text" id="orderId" name="orderId" class="form-control" placeholder="Auto-generated" readonly>
+            </div>
 
-                <div class="mb-3">
-                    <label for="itemId" class="form-label">Item</label>
-                    <select id="itemId" class="form-control" required>
-                        <option value="">Select Item</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
-                </div>
+            <div class="mb-3">
+                <label for="customerIds" class="form-label">Customer</label>
+                <select id="customerIds" class="form-control" required>
+                    <option value="">Select Customer</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
 
-                <div class="mb-3">
-                    <label for="quantity" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" required>
-                </div>
+            <div class="mb-3">
+                <label for="itemId" class="form-label">Item</label>
+                <select id="itemId" class="form-control" required>
+                    <option value="">Select Item</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
 
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="text" class="form-control" id="price" required>
-                </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" required>
+            </div>
 
-                <div class="mb-3">
-                    <label for="totalPrice" class="form-label">Total Price</label>
-                    <input type="text" id="totalPrice" class="form-control" required>
-                </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" class="form-control" id="price" required>
+            </div>
 
-                <button id="place_order_button" type="button" class="btn btn-primary w-100">Place Order</button>
-                <hr>
-            </form>
-            <h5>Order Details</h5>
+            <div class="mb-3">
+                <label for="totalPrice" class="form-label">Total Price</label>
+                <input type="text" id="totalPrice" class="form-control" placeholder="Auto-calculated" readonly>
+            </div>
+
+            <button id="place_order_button" type="button" class="btn btn-primary w-100">Place Order</button>
+            <hr>
+        </form>
+
+        <h5>Order Details</h5>
+        <div class="table-responsive">
             <table class="table table-bordered mt-3">
                 <thead>
                 <tr>
+                    <th>Date</th>
                     <th>Order ID</th>
                     <th>Customer ID</th>
                     <th>Item ID</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
+
                 </tr>
                 </thead>
-                <tbody id="orderTableBody"></tbody>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-
+                <tbody id="orderTableBody">
+                <!-- Order details will be dynamically inserted here -->
+                </tbody>
             </table>
         </div>
     </div>
+</div>
+
 
 
 <!-- Footer -->
@@ -507,12 +511,15 @@
     let customer_nav = document.getElementById("customer-nav");
     let item_nav = document.getElementById("item-nav");
     let order_nav = document.getElementById("order-nav");
+    //let order_history_nav = document.getElementById("order-history-nav");
 
 
     let dashboard_section = document.getElementById("dashboard-section");
     let customer_section = document.getElementById("customer-section");
     let item_section = document.getElementById("item-section");
     let order_section = document.getElementById("order-section");
+    //let order_history_section = document.getElementById("order-history-section");
+
 
 
     // Set initial visibility for all sections (optional)
@@ -520,6 +527,7 @@
      customer_section.style.display = "none";
     item_section.style.display = "none";
     order_section.style.display = "none";
+    //order_history_section.style.display = "none";
 
 
     dashboard_nav.addEventListener('click', function () {
@@ -527,6 +535,7 @@
         customer_section.style.display = "none";
         item_section.style.display = "none";
         order_section.style.display = "none";
+        //order_history_section.style.display = "none";
 
     });
 
@@ -535,6 +544,7 @@
         customer_section.style.display = "block";
         item_section.style.display = "none";
         order_section.style.display = "none";
+        //order_history_section.style.display = "none";
 
     });
 
@@ -543,6 +553,7 @@
         customer_section.style.display = "none";
         item_section.style.display = "block";
         order_section.style.display = "none";
+        //order_history_section.style.display = "none";
 
     });
 
@@ -551,8 +562,18 @@
         customer_section.style.display = "none";
         item_section.style.display = "none";
         order_section.style.display = "block";
+        ///order_history_section.style.display = "none";
 
     });
+
+    // order_history_nav.addEventListener('click', function () {
+    //     dashboard_section.style.display = "none";
+    //     customer_section.style.display = "none";
+    //     item_section.style.display = "none";
+    //     order_section.style.display = "none";
+    //     order_history_section.style.display = "block";
+    //
+    // });
 
         // Calculate total price when quantity or price changes
         const calculateTotalPrice = () => {
