@@ -25,9 +25,9 @@ function populateItemDropdown() {
     });
 }
 
-// Function to generate Order ID
+// Function to generate unique Order ID
 function generateOrderId() {
-    return 1; // Fixed Order ID for simplicity
+    return `ORD-${Math.floor(Math.random() * 10000)}`; // Random Order ID for simplicity
 }
 
 // Calculate total price based on quantity and price
@@ -40,11 +40,13 @@ function calculateTotalPrice() {
 }
 
 // Function to add order details to the table
-function addOrderToTable(itemId, quantity, price, totalPrice) {
-    const orderTableBody = document.getElementById("orderTable").querySelector("tbody");
+function addOrderToTable(orderId, customerId, itemId, quantity, price, totalPrice) {
+    const orderTableBody = document.getElementById("orderTableBody");
 
     const row = document.createElement("tr");
     row.innerHTML = `
+        <td>${orderId}</td>
+        <td>${customerId}</td>
         <td>${itemId}</td>
         <td>${quantity}</td>
         <td>${price.toFixed(2)}</td>
@@ -54,33 +56,52 @@ function addOrderToTable(itemId, quantity, price, totalPrice) {
     orderTableBody.appendChild(row);
 }
 
-// Function to show SweetAlert
+// Function to show SweetAlert for a successful order
 function showSweetAlert() {
-    swal("Success!", "Item added to order!", "success");
+    Swal.fire({
+        title: "Order Placed!",
+        text: "Your order has been added successfully!",
+        icon: "success",
+        confirmButtonText: "OK"
+    });
 }
 
 // Event listeners
 document.addEventListener("DOMContentLoaded", () => {
-    // Populate dropdowns on button click
+    // Populate dropdowns when navigating to the order form
     document.getElementById("order-nav").addEventListener("click", function() {
-        populateCustomerDropdown(); // Populate customer dropdown
-        populateItemDropdown(); // Populate item dropdown
+        populateCustomerDropdown();
+        populateItemDropdown();
+        document.getElementById("orderId").value = generateOrderId(); // Set a new order ID
     });
 
     // Set up event listeners for quantity and price input
-    document.getElementById("quantity").addEventListener("input", calculateTotalPrice); // Calculate total when quantity changes
-    document.getElementById("price").addEventListener("input", calculateTotalPrice); // Calculate total when price changes
+    document.getElementById("quantity").addEventListener("input", calculateTotalPrice);
+    document.getElementById("price").addEventListener("input", calculateTotalPrice);
 
-    // Add an event listener for adding an order
-    document.getElementById("itemId").addEventListener("change", () => {
+    // Event listener for placing the order
+    document.getElementById("place_order_button").addEventListener("click", () => {
+        const orderId = document.getElementById("orderId").value;
+        const customerId = document.getElementById("customerIds").value;
         const itemId = document.getElementById("itemId").value;
         const quantity = parseInt(document.getElementById("quantity").value) || 0;
         const price = parseFloat(document.getElementById("price").value) || 0;
         const totalPrice = price * quantity;
 
-        if (quantity > 0) {
-            addOrderToTable(itemId, quantity, price, totalPrice);
-            showSweetAlert(); // Show SweetAlert when item is added
+        if (customerId && itemId && quantity > 0) {
+            addOrderToTable(orderId, customerId, itemId, quantity, price, totalPrice);
+            showSweetAlert(); // Show SweetAlert after successfully adding the order
+
+            // Clear the form inputs after placing the order
+            document.getElementById("orderForm").reset();
+            document.getElementById("orderId").value = generateOrderId(); // Generate a new order ID
+        } else {
+            Swal.fire({
+                title: "Error!",
+                text: "Please fill in all fields correctly.",
+                icon: "error",
+                confirmButtonText: "OK"
+            }); // Show an error if fields are missing
         }
     });
 });
