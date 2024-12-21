@@ -7,105 +7,107 @@
     <title>Grocery POS System</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color: #121212; /* Dark background */
-            font-family: Arial, sans-serif; /* Modern font */
-            color: #FFFFFF; /* White text for contrast */
-            margin: 0; /* Remove default margin */
+            background-color: #121212;
+            font-family: Arial, sans-serif;
+            color: #FFFFFF;
+            margin: 0;
         }
 
         .navbar {
-            background-color: #FF6F00; /* Orange background for the navbar */
-            padding: 10px; /* Padding for better spacing */
+            background-color: #FF6F00;
+            padding: 10px;
         }
 
         .navbar-brand, .nav-link {
-            color:gray; /* White color for links */
+            color:gray;
         }
 
         .navbar-nav .nav-link {
-            padding: 10px 15px; /* Spacing for links */
+            padding: 10px 15px;
         }
 
         .navbar-nav .nav-link:hover {
             color: floralwhite;
-            background-color: maroon; /* Lighter orange on hover */
-            border-radius: 5px; /* Rounded corners on hover */
+            background-color: maroon;
+            border-radius: 5px;
         }
 
         .container {
-            margin-top: 20px; /* Spacing from the top */
+            margin-top: 20px;
         }
 
         .card {
-            border: 1px solid maroon; /* Border color for cards */
-            background-color: #1E1E1E; /* Dark background for cards */
-            border-radius: 8px; /* Rounded corners for cards */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
-            margin-bottom: 20px; /* Spacing between cards */
+            border: 1px solid maroon;
+            background-color: #1E1E1E;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
         }
 
         .card-header {
-            background-color: maroon; /* Orange header background */
-            color: #FFFFFF; /* White color for card header text */
-            padding: 10px; /* Padding for card header */
-            border-top-left-radius: 8px; /* Rounded top-left corners */
-            border-top-right-radius: 8px; /* Rounded top-right corners */
+            background-color: maroon;
+            color: #FFFFFF;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
 
         .card-body {
-            background-color: #1E1E1E; /* Darker background for card body */
-            color: #FFFFFF; /* White text for card body */
-            padding: 15px; /* Padding for card body */
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            padding: 15px;
         }
 
         .table {
-            margin-top: 15px; /* Spacing above tables */
-            width: 100%; /* Full width */
+            margin-top: 15px;
+            width: 100%;
         }
 
         .table th {
-            background-color: gray; /* Header background color for tables */
-            color: #FFFFFF; /* White text color for table headers */
-            padding: 10px; /* Padding for table headers */
+            background-color: gray;
+            color: #FFFFFF;
+            padding: 10px;
         }
 
         .table td {
-            background-color: #1E1E1E; /* Dark background for table cells */
-            color: #FFFFFF; /* White text for table cells */
-            padding: 10px; /* Padding for table cells */
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            padding: 10px;
         }
 
         .btn-primary {
-            background-color: brown; /* Bright orange button color */
-            border-color: palegoldenrod; /* Orange border */
-            color: #FFFFFF; /* White text */
-            border-radius: 5px; /* Rounded corners */
+            background-color: brown;
+            border-color: palegoldenrod;
+            color: #FFFFFF;
+            border-radius: 5px;
         }
 
         .btn-primary:hover {
-            background-color: indianred; /* Lighter orange on hover */
-            border-color: #FFB74D; /* Light orange border on hover */
+            background-color: indianred;
+            border-color: #FFB74D;
         }
 
         footer {
             text-align: center;
             margin-top: 8px;
-            padding: 15px; /* More padding for footer */
-            background-color: black; /* Orange footer background */
-            color: #FFFFFF; /* White footer text */
-            position: relative; /* For layout control */
-            bottom: 0; /* Stick to the bottom */
-            width: 100%; /* Full width */
+            padding: 15px;
+            background-color: black;
+            color: #FFFFFF;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
         .section {
-            display: none; /* Hide all sections initially */
+            display: none;
         }
 
         .section.active {
-            display: block; /* Show active section */
+            display: block;
         }
 
 
@@ -163,7 +165,6 @@
         }
 
 
-        /* Main Collection Container */
         .collection {
             display: flex;
             gap: 35px; /* Space between images */
@@ -172,7 +173,6 @@
             padding: 10px;
         }
 
-        /* Individual Item Styling */
         .item {
             width: 350px;
             height: 390px;
@@ -193,13 +193,11 @@
 
         }
 
-        /* Hover Effect */
         .item:hover {
             transform: scale(1.05);
             box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Adding a Light Overlay */
         .item::before {
             content: '';
             position: absolute;
@@ -216,7 +214,6 @@
             background: rgba(0, 0, 0, 0.2);
         }
 
-        /* Adding a Text Label on Hover */
         .item::after {
             content: 'View';
             position: absolute;
@@ -256,18 +253,77 @@
             }
         }
 
+        .navbar .clock #Date {
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+           // color: #555;
+        }
+
+        .navbar .clock ul li {
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+           // color: #333;
+        }
+
+        .navbar .clock {
+            color: maroon;
+            padding: 10px 15px;
+            border-radius: 12px;
+           // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        .navbar .clock #Date {
+            font-size: 15px;
+            font-weight: bold;
+            color: maroon;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .navbar .clock ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar .clock ul li {
+            font-size: 18px;
+            font-weight: 500;
+            padding: 3px 6px;
+            border-radius: 4px;
+           // color: #333;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .clock ul li#point {
+            background-color: transparent;
+            color: maroon;
+            font-weight: bold;
+            padding: 0;
+        }
+
+
 
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <!-- Navbar Brand -->
         <a class="navbar-brand" href="#" id="name">Piyara Fashion</a>
+        <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
                     <span id="dashboard-nav" class="nav-link">Home</span>
                 </li>
@@ -280,10 +336,22 @@
                 <li class="nav-item">
                     <span id="order-nav" class="nav-link">Place Order</span>
                 </li>
+                <!-- Clock -->
+                <li class="nav-item clock ms-lg-3">
+                    <div id="Date">Saturday 7 December 2024</div>
+                    <ul class="d-flex list-unstyled mb-0">
+                        <li id="hours">04</li>
+                        <li id="points">:</li>
+                        <li id="min">40</li>
+                        <li id="point">:</li>
+                        <li id="sec">30</li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+
 <div id="dashboard-section">
     <div class="hero">
         <h1>Welcome to Piyara Fashion</h1>
@@ -372,6 +440,10 @@
             <form id="itemForm">
 
                 <div class="mb-3">
+                    <label for="itemIds" class="form-label">Customer ID</label>
+                    <input type="text" id="itemIds" name="id" class="form-control" placeholder="Auto-generated" readonly>
+                </div>
+                <div class="mb-3">
                     <label for="itemCategory" class="form-label">Category</label>
                     <select class="form-control" id="itemCategory" required>
                         <option value="">Select Category</option>
@@ -405,6 +477,7 @@
             <table class="table table-bordered mt-3">
                 <thead>
                 <tr>
+                    <th>Item-ID</th>
                     <th>Category</th>
                     <th>Item Name</th>
                     <th>Price</th>
@@ -583,13 +656,13 @@
         document.getElementById('totalPrice').value = totalPrice.toFixed(2);
     };
 
-        // Event listeners for calculating total price
+
         document.getElementById('price').addEventListener('input', calculateTotalPrice);
         document.getElementById('quantity').addEventListener('input', calculateTotalPrice);
 
-        // Order placing functionality
+
         document.getElementById('place_order_button').addEventListener('click', () => {
-        // Capture form values
+
         const orderId = document.getElementById('orderId').value; // Auto-generated or input value
         const customerId = document.getElementById('customerId').value;
         const itemId = document.getElementById('itemId').value;
@@ -597,15 +670,15 @@
         const price = parseFloat(document.getElementById('price').value);
         const totalPrice = parseFloat(document.getElementById('totalPrice').value);
 
-        // Validate required fields
+
         if (!customerId || !itemId || quantity <= 0 || price <= 0) {
         alert("Please fill in all required fields correctly.");
         return;
     }
 
-        // Create an order object
+
         const order = {
-        orderId: orderId || generateOrderId(), // Generate if not provided
+        orderId: orderId || generateOrderId(),
         customerId,
         itemId,
         quantity,
@@ -613,7 +686,6 @@
         totalPrice
     };
 
-        // Append the new order to the order table
         const orderTableBody = document.getElementById('orderTableBody');
         const newRow = `<tr>
                             <td>${order.orderId}</td>
@@ -625,18 +697,18 @@
                         </tr>`;
         orderTableBody.insertAdjacentHTML('beforeend', newRow);
 
-        // Clear form fields after placing the order
+
         document.getElementById('orderForm').reset();
         calculateTotalPrice(); // Reset total price display
     });
 
-        // Function to generate a random Order ID (if needed)
+
         const generateOrderId = () => {
         return `ORD-${Math.floor(Math.random() * 10000)}`;
     };
 </script>
 
-<!--jquery-->
+
 <script src="lib/jquery-3.7.1.min(1).js"></script>
 
 <script type="module" src="controller/customerController.js"></script>
@@ -645,5 +717,6 @@
 <script type="module" src="controller/itemController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script src="controller/clock.js"></script>
 </body>
 </html>

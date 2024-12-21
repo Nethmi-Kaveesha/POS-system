@@ -1,7 +1,7 @@
-// Array to store order history
+
 let orderHistory = [];
 
-// Function to store order in history
+
 function storeOrderInHistory(orderId, customerId, itemId, quantity, price, totalPrice) {
     const order = {
         orderId,
@@ -10,12 +10,12 @@ function storeOrderInHistory(orderId, customerId, itemId, quantity, price, total
         quantity,
         price: price.toFixed(2),
         totalPrice: totalPrice.toFixed(2),
-        date: new Date().toLocaleString() // Date and time of order
+        date: new Date().toLocaleString()
     };
     orderHistory.push(order);
 }
 
-// Function to display order history in the history table
+
 function displayOrderHistory() {
     const orderHistoryBody = document.getElementById("orderHistoryBody");
     orderHistoryBody.innerHTML = ""; // Clear existing rows
@@ -35,7 +35,7 @@ function displayOrderHistory() {
     });
 }
 
-// Update the addOrderToTable function to store in history and display in order table
+
 function addOrderToTable(orderId, customerId, itemId, quantity, price, totalPrice) {
     const orderTableBody = document.getElementById("orderTableBody");
 
@@ -50,9 +50,9 @@ function addOrderToTable(orderId, customerId, itemId, quantity, price, totalPric
     `;
     orderTableBody.appendChild(row);
 
-    // Store the order in history
+
     storeOrderInHistory(orderId, customerId, itemId, quantity, price, totalPrice);
 }
 
-// Event listener to display order history
+
 document.getElementById("view_history_button").addEventListener("click", displayOrderHistory);

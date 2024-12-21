@@ -8,74 +8,74 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #000000; /* Black background */
+            background-color: #000000;
             font-family: 'Poppins', sans-serif;
-            color: #ffffff; /* White text */
+            color: #ffffff;
             margin: 0;
-            overflow: hidden; /* Prevent scrollbars */
+            overflow: hidden;
         }
 
         .container {
             display: flex;
             height: 100vh;
-            position: relative; /* For absolute positioning of images */
+            position: relative;
         }
 
         .login-container {
-            background: rgba(128, 0, 0, 0.9); /* Maroon background with transparency */
+            background: rgba(128, 0, 0, 0.9);
             border-radius: 15px;
             padding: 30px;
             max-width: 400px;
-            margin: auto; /* Center vertically */
-            z-index: 2; /* Ensure login box is above images */
+            margin: auto;
+            z-index: 2;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
+            justify-content: center;
         }
 
         .card {
-            background-color: #1c1c1c; /* Dark grey for card */
+            background-color: #1c1c1c;
             border: none;
             border-radius: 15px;
         }
 
         .form-control {
-            background-color: #2a2a2a; /* Darker grey for inputs */
-            color: #ffffff; /* White text for inputs */
-            border: 1px solid #b22222; /* Maroon border */
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: 1px solid #b22222;
             padding: 15px;
             transition: all 0.3s ease;
         }
 
         .form-control:focus {
-            border: 2px solid #b22222; /* Maroon focus border */
+            border: 2px solid #b22222;
             box-shadow: none;
         }
 
         .btn-primary {
-            background-color: #b22222; /* Maroon button */
+            background-color: #b22222;
             border: none;
             transition: background-color 0.3s;
         }
 
         .btn-primary:hover {
-            background-color: #900000; /* Darker maroon on hover */
+            background-color: #900000;
         }
 
         a {
             text-decoration: none;
-            color: #ffffff; /* White links */
+            color: #ffffff;
         }
 
         a:hover {
             text-decoration: underline;
-            color: #b22222; /* Maroon on hover */
+            color: #b22222;
         }
 
         .modal-content {
-            background-color: #333333; /* Dark grey for modal */
+            background-color: #333333;
             border-radius: 15px;
-            color: #ffffff; /* White text */
+            color: #ffffff;
         }
 
         .modal-header {
@@ -83,51 +83,50 @@
         }
 
         .logo {
-            width: 100px; /* Logo size */
+            width: 100px;
             margin-bottom: 20px;
         }
 
         h2 {
             font-weight: bold;
-            color: #b22222; /* Maroon for headings */
+            color: #b22222;
         }
 
         .image-container {
-            position: relative; /* For absolute positioning of images */
-            flex: 1; /* Allow the image container to take available space */
-            overflow: hidden; /* Hide overflow for images */
+            position: relative;
+            flex: 1;
+            overflow: hidden;
         }
 
         .large-image {
-            position: absolute; /* Position for animation */
+            position: absolute;
             top: 50%;
             left: 50%;
-            width: 100%; /* Adjust width to full for better fit */
-            height: auto; /* Maintain aspect ratio */
-            object-fit: cover; /* Cover the container */
-            transform: translate(-50%, -50%); /* Center image */
-            border-radius: 15px; /* Rounded corners */
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
             opacity: 0;
-            animation: fade 12s infinite; /* Change duration as needed */
+            animation: fade 12s infinite;
         }
 
-        /* Animation for images */
+
         @keyframes fade {
-            0%, 20% { opacity: 1; } /* Show the image */
-            25%, 100% { opacity: 0; } /* Hide the image */
+            0%, 20% { opacity: 1; }
+            25%, 100% { opacity: 0; }
         }
 
-        /* Show each image at different times */
         #image1 {
-            animation-delay: 0s; /* First image */
+            animation-delay: 0s;
         }
 
         #image2 {
-            animation-delay: 4s; /* Second image */
+            animation-delay: 4s;
         }
 
         #image3 {
-            animation-delay: 8s; /* Third image */
+            animation-delay: 8s;
         }
 
         .footer {

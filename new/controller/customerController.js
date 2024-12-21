@@ -11,10 +11,11 @@ const generateCustomerId = () => {
     return `CUST-${lastCustomerId + 1}`;
 };
 
+
 const loadCustomerTable = () => {
     $('#customerTableBody').empty();
     customer_array.forEach((item) => {
-        const rowHtml = `<tr>
+        const rowHtml = `<tr> 
             <td>${item.id}</td>
             <td>${item.first_name}</td>
             <td>${item.last_name}</td>
@@ -25,6 +26,7 @@ const loadCustomerTable = () => {
         $('#customerTableBody').append(rowHtml);
     });
 };
+
 
 const clearCustomerForm = () => {
     $('input[name="customerId"]').val('Auto-generated');
@@ -60,7 +62,7 @@ const validateCustomerForm = () => {
     return true;
 };
 
-// Add customer
+
 $('#customer_add_button').on('click', function() {
     if (!validateCustomerForm()) return;
 
@@ -80,7 +82,7 @@ $('#customer_add_button').on('click', function() {
     showAlert('Success', 'Customer added successfully!', 'success');
 });
 
-// Select customer for editing
+
 $('#customerTableBody').on('click', 'tr', function() {
     selectedIndex = $(this).index();
     const cus_obj = customer_array[selectedIndex];
@@ -93,7 +95,6 @@ $('#customerTableBody').on('click', 'tr', function() {
     $('input[name="customerId"]').val(cus_obj.id);
 });
 
-// Update customer
 $('#customer_update_button').on('click', function() {
     if (selectedIndex === null || selectedIndex < 0) {
         showAlert('Error', 'Please select a customer to update.', 'error');
@@ -117,7 +118,6 @@ $('#customer_update_button').on('click', function() {
     showAlert('Success', 'Customer updated successfully!', 'success');
 });
 
-// Delete customer
 $('#customer_delete_button').on('click', function() {
     if (selectedIndex === null || selectedIndex < 0) {
         showAlert('Error', 'Please select a customer to delete.', 'error');
